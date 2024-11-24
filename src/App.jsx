@@ -1,10 +1,8 @@
-/* eslint-disable */
-
 import 'bulma/css/bulma.css';
 import './App.scss';
-import { GoodList } from './components/GoodList/GoodList';
 import { useState } from 'react';
 import cn from 'classnames';
+import { GoodList } from './components/GoodList/GoodList';
 
 export const goodsFromServer = [
   'Dumplings',
@@ -22,7 +20,7 @@ export const goodsFromServer = [
 function internalArrayOfObjectsWithId(arr) {
   const internalArrayOfObjects = [];
 
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i += 1) {
     internalArrayOfObjects.push({
       name: arr[i],
       internalId: i,
