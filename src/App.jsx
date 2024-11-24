@@ -17,7 +17,7 @@ export const goodsFromServer = [
   'Garlic',
 ];
 
-function internalArrayOfObjectsWithId(arr) {
+function createInternalArrayOfObjectsWithId(arr) {
   const internalArrayOfObjects = [];
 
   for (let i = 0; i < arr.length; i += 1) {
@@ -30,7 +30,7 @@ function internalArrayOfObjectsWithId(arr) {
   return internalArrayOfObjects;
 }
 
-const goodsListWithId = internalArrayOfObjectsWithId(goodsFromServer);
+const goodsListWithId = createInternalArrayOfObjectsWithId(goodsFromServer);
 const SORT_BY_LENGTH = 'length';
 const SORT_BY_ABC = 'abc';
 
