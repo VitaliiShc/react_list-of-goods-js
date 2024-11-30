@@ -17,26 +17,23 @@ export const goodsFromServer = [
   'Garlic',
 ];
 
-function createInternalArrayOfObjectsWithId(arr) {
-  const internalArrayOfObjects = [];
-
-  for (let i = 0; i < arr.length; i += 1) {
-    internalArrayOfObjects.push({
-      name: arr[i],
-      internalId: i,
-    });
-  }
-
-  return internalArrayOfObjects;
-}
-
-const goodsListWithId = createInternalArrayOfObjectsWithId(goodsFromServer);
 const SORT_BY_LENGTH = 'length';
 const SORT_BY_ABC = 'abc';
 
+function createInternalArrayOfObjectsWithId(arr) {
+  return arr.map((item, idx) => {
+    return {
+      name: item,
+      internalId: idx,
+    };
+  });
+}
+
+const goodsListWithId = createInternalArrayOfObjectsWithId(goodsFromServer);
+
 export const App = () => {
   const [sortValue, setSortValue] = useState('');
-  const [reversed, setReversed] = useState(false);
+  const [isReversed, setIsReversed] = useState(false);
 
   let sortedGoods = goodsListWithId.toSorted((good1, good2) => {
     switch (sortValue) {
@@ -49,7 +46,7 @@ export const App = () => {
     }
   });
 
-  if (reversed) {
+  if (isReversed) {
     sortedGoods = sortedGoods.toReversed();
   }
 
@@ -79,20 +76,20 @@ export const App = () => {
         <button
           type="button"
           className={cn('button', 'is-warning', {
-            'is-light': reversed !== true,
+            'is-light': isReversed !== true,
           })}
-          onClick={() => setReversed(!reversed)}
+          onClick={() => setIsReversed(!isReversed)}
         >
           Reverse
         </button>
 
-        {(sortValue || reversed) && (
+        {(sortValue || isReversed) && (
           <button
             type="button"
             className="button is-danger is-light"
             onClick={() => {
               setSortValue('');
-              setReversed(false);
+              setIsReversed(false);
             }}
           >
             Reset
